@@ -1,0 +1,20 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<div *ngIf="allTasks != ''">
+  <div *ngFor="let task of allTasks.data">
+    <h1>{{task.title}}</h1>
+    <h2>{{task.description}}</h2>
+    <h3>{{task.createdAt | date:'longDate'}}</h3>
+  </div>
+  <div *ngIf="lastTask != ''">
+    <hr>
+    <p>Last Task:</p>
+    <input type="text" [value]="lastTask.title">
+    <input type="text" [value]="lastTask.description">
+  </div>
+</div>
+

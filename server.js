@@ -1,11 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var path = require('path');
 var mongoose = require('mongoose');
 var app = express();
 
 app.use(bodyParser.json());
-mongoose.connect('mongodb://localhost/restfulTasks');
+app.use(express.static(path.join(__dirname, './restfulTasksAngular', '/dist')));
 mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/restfulTasks');
 
 var taskSchema = new mongoose.Schema({
     title: { type: String, required: true, minlength: 5 },
