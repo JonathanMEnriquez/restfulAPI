@@ -10,14 +10,13 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 export class AppComponent implements OnInit {
   title = 'Your Tasks';
   allTasks:any = "";
-  lastTask:any = "";
+  taskId:String = "";
+  singleTask:any = "";
 
   constructor(private _httpService: HttpService) {}
 
   ngOnInit() {
     
-    this.getAll();
-    // this.getFirst();
   }
   
   getAll(){
@@ -27,16 +26,16 @@ export class AppComponent implements OnInit {
     observable.subscribe((data:any) => {
       console.log('got the tasks!', data);
       this.allTasks = data;
-      let arr:Object[] = this.allTasks.data;
-      this.lastTask = arr[arr.length - 1];
-      console.log(this.lastTask);
     })
   }
 
-  // getFirst() {
-  //   let observable = this._httpService.getOneTask()
-  //   observable.subscribe((data:any) => {
-
-  //   })
-  // }
+  getOne(id:String) {
+    console.log(this.taskId);
+    let observable = this._httpService.getOneTask(id);
+    observable.subscribe((data:any) => {
+      console.log('got one task');
+      this.singleTask = data.data;
+      console.log(this.singleTask);
+    })
+  }
 }
