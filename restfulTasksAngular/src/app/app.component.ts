@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     }
 
     this.editTask = { 
+      id: "",
       title: "",
       description: ""
     }
@@ -50,11 +51,12 @@ export class AppComponent implements OnInit {
     })
   }
 
-  fillInEdit(title, description) {
+  fillInEdit(event) {
 
     console.log('edit button pressed');
-    console.log(title, description);
-    this.editTask.title = title;
-    this.editTask.description = description;
+    console.log(event.srcElement);
+    this.editTask.title = event.srcElement.title;
+    this.editTask.description = event.srcElement.name;
+    this.editTask.id = event.srcElement.id;
   }
 }
