@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpService } from './http.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit {
     this.editTask = { 
       id: "",
       title: "",
-      description: ""
+      description: "",
+      completed: false
     }
   }
 
@@ -58,5 +60,29 @@ export class AppComponent implements OnInit {
     this.editTask.title = event.srcElement.title;
     this.editTask.description = event.srcElement.name;
     this.editTask.id = event.srcElement.id;
+  }
+
+  updateTask(){
+    console.log('calling service');
+    let observable = this._httpService.updateTask(this.editTask);
+    observable.subscribe((data:any)=> {
+      console.log('successfullly updated task!');
+      this.editTask = {
+        id: "",
+        title: "",
+        description: "",
+        completed: false
+      }
+      this.getAll();
+    })
+  }
+
+  deleteTask(event) {
+    console.log('gonna delete');
+    let observable = this._httpService.deleteTask(event.srcElement.id);
+    observable.subscribe((data:any)=>{
+      console.log('successfully deleted task');
+      this.getAll();
+    })
   }
 }

@@ -46,15 +46,18 @@ app.put('/tasks/:id', function(req, res) {
             console.log(err);
             res.json({ message: "Error", error: err });
         } else {
+            console.log(req.body);
             task.title = req.body.title;
             task.description = req.body.description;
             task.completed = req.body.completed;
             task.save(function(err) {
                 if (err) {
+                    console.log(err);
                     res.json({ message: 'Error', error: err });
                 }
                 else {
-                    res.send("You have successfully updated " + task.title);
+                    console.log(task);
+                    res.json({ message: "Successfully updated", data: task });
                 }
             })
         }
@@ -82,7 +85,7 @@ app.delete('/tasks/:id', function(req, res) {
         if (err) {
             res.json({ message: 'Error', error: err });
         } else {
-            res.send('You have successfully removed a task from the db')
+            res.json({message: 'successfully deleted'})
         }
     })
 })

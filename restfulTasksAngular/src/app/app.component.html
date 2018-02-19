@@ -21,14 +21,16 @@
         </div>
         <div class="right_side">
           <button class="createButton" (click)="fillInEdit($event)" title="{{ task.title }}" name="{{ task.description }}" id="{{ task._id }}">Edit</button><br>
-          <button class="createButton"(click)="deleteTask()" name="{{ task._id }}">Delete</button>
+          <button class="createButton"(click)="deleteTask($event)" id="{{ task._id }}">Delete</button>
         </div>
       </div>
   </div>
   <div id="editTask">
     <h1>Edit Task</h1>
     <p>{{ editTask | json }}</p>
-    <form (submit)="editTask()">
+    <form (submit)="updateTask()">
+      <label class="light_gray">ID</label>
+      <input type="text" [(ngModel)]="editTask.id" class="my_input" name="editIdInput"><br>
       <label class="light_gray">Title</label>
       <input type="text" [(ngModel)]="editTask.title" class="my_input" name="editTitleInput"><br>
       <label class="light_gray">Description</label>

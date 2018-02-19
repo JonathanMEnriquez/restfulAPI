@@ -19,6 +19,15 @@ export class HttpService {
   createATask(task: any) {
     return this._http.post('/tasks', task);
   }
+
+  updateTask(task: any) {
+    console.log('about to do the put request to ' + task.id);
+    return this._http.put(`/tasks/${task.id}`, task);
+  }
+
+  deleteTask(id) {
+    return this._http.delete(`/tasks/${id}`);
+  }
 }
 
 
