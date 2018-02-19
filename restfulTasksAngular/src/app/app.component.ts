@@ -11,16 +11,37 @@ export class AppComponent implements OnInit {
   title = 'Your Tasks';
   allTasks:any = "";
   taskId:String = "";
-  singleTask:any = "";
+  editTask:any;
+  newTask:any;
 
   constructor(private _httpService: HttpService) {}
 
   ngOnInit() {
-    
+    this.getAll();
+    this.newTask = { 
+      title: "",
+      description: ""
+    }
+
+    this.editTask = { 
+      title: "",
+      description: ""
+    }
+  }
+
+  createTask(){
+    console.log('calling my service');
+    let observable = this._httpService.createATask(this.newTask)
+    observable.subscribe((data: any)=> {
+      console.log('saved successfully');
+      this.getAll();
+    })
+    //reset newTask
+    this.newTask = { title: "", description: "" };
   }
   
   getAll(){
-    console.log('calling my service')
+    console.log('calling my service');
     let observable = this._httpService.getTasks()
     console.log(observable);
     observable.subscribe((data:any) => {
@@ -29,13 +50,11 @@ export class AppComponent implements OnInit {
     })
   }
 
-  getOne(id:String) {
-    console.log(this.taskId);
-    let observable = this._httpService.getOneTask(id);
-    observable.subscribe((data:any) => {
-      console.log('got one task');
-      this.singleTask = data.data;
-      console.log(this.singleTask);
-    })
+  fillInEdit(title, description) {
+
+    console.log('edit button pressed');
+    console.log(title, description);
+    this.editTask.title = title;
+    this.editTask.description = description;
   }
 }

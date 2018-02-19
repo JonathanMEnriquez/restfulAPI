@@ -1,20 +1,39 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <button id="getAll" (click)="getAll()">Click to get all tasks</button>
-  <div *ngIf="allTasks != ''">
-    <ul *ngFor="let task of allTasks.data">
-      <li>{{task.title}} - {{task.description}} - {{task._id}}</li>
-    </ul>
+<div id="container">
+  <div id="createTask">
+    <h1>New Task</h1>
+    <p>{{ newTask | json }}</p>
+    <form (submit)="createTask()">
+      <label class="light_gray">Title</label>
+      <input type="text" [(ngModel)]="newTask.title" class="my_input" name="titleInput"><br>
+      <label class="light_gray">Description</label>
+      <input type="text" [(ngModel)]="newTask.description" class="my_input" name="descriptionInput">
+      <input type="submit" value="Create" class="createButton">
+    </form><br><br>
   </div>
-  <div id="singleTask">
-    <input type="text" [value]="taskId">
-    <button id="singleButton" (click)="getOne()">Click to get one task</button>    
-    <div *ngIf="singleTask != ''">
-      {{singleTask}} - {{singleTask.description}}
-    </div>
+  <div id="allTasks" *ngIf="allTasks != ''">
+      <h1>Task List</h1><br>
+      <div *ngFor="let task of allTasks.data" class="individual_task">
+        <div class="left_side">
+          <h2>{{task.title}}</h2>
+          <h4>{{task.description}}</h4>
+        </div>
+        <div class="right_side">
+          <button class="createButton" >Edit</button><br>
+          <button class="createButton">Delete</button>
+        </div>
+      </div>
+  </div>
+  <div id="editTask">
+    <h1>Edit Task</h1>
+    <p>{{ editTask | json }}</p>
+    <form (submit)="editTask()">
+      <label class="light_gray">Title</label>
+      <input type="text" [(ngModel)]="editTask.title" class="my_input" name="editTitleInput"><br>
+      <label class="light_gray">Description</label>
+      <input type="text" [(ngModel)]="editTask.description" class="my_input" name="editDescriptionInput">
+      <input type="submit" value="Edit" class="createButton">
+    </form><br><br>
   </div>
 </div>
 

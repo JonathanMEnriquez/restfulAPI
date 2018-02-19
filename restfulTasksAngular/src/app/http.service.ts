@@ -15,6 +15,10 @@ export class HttpService {
   getOneTask(id) {
     return this._http.get(`/tasks/${id}`);
   }
+
+  createATask(task: any) {
+    return this._http.post('/tasks', task);
+  }
 }
 
 

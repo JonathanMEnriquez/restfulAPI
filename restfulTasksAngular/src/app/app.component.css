@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    color: #fff;
+    font-family: 'Nunito Semibold';
+    text-align: center;
+}
+
+#container{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(4, minmax(150px, auto));
+    max-width: 75%;
+    margin-left: 12.5%;
+    grid-row-gap: 10px;
+    min-height: 100%;
+    text-align: center;
+}
+
+#createTask{
+    grid-column: 1 / 5;
+    grid-row-start: 1;
+    text-align: left;
+}
+
+#allTasks {
+    grid-column: 1 / 4;
+    grid-row-start: 2;
+    text-align: left;
+}
+
+#editTask {
+    grid-column: 5 / 8;
+    grid-row-start: 2;
+    text-align: left;
+}
+
+#createTask h1{
+    padding: 5px;
+}
+
+.light_gray{
+    background-color: lightgray;
+    width: 33%;
+    padding: 2px;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.my_input {
+    width: 42%;
+    padding: 2px;
+    border: 2px black;
+    border-style: solid;
+    border-radius: 5px;
+    height: 21px;
+    font-size: 16px;
+}
+
+.createButton{
+    background-color: darkgray;
+    font-size: 14px;
+    padding: 3px;
+    border-radius: 5px;
+    color: white;
+}
+
+.individual_task{
+    background-color: lightgray;
+}
+
+.left_side{
+    grid-column: 1 / 2;
+}
+
+.left_side h2 {
+    display: inline-block;
+}
+
+.left_side h4 {
+    display: inline-block;
+}
+
+.right_side{
+    grid-column: 2 / 3;
+}
